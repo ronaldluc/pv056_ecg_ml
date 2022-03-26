@@ -1,0 +1,8 @@
+pandas~=1.4.1
+numpy~=1.22.3
+requests~=2.27.1
+tqdm~=4.63.1
+openpyxl~=3.0.9
+sklearn~=0.0
+scikit-learn~=1.0.2
+tensorflow~=2.8.0
