@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import List, Iterable
 
@@ -74,9 +75,12 @@ def print_results(results_folder: Path, output_folder: Path):
     df = pd.DataFrame(res)
     for line in str(df).split('\n'):
         logging.getLogger(__name__).info(f'\t\t{line}')
-    df.to_csv(output_folder / 'results.csv')
+
+    formatted_time = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+    df.to_csv(output_folder / f'results_{formatted_time}.csv')
 
     # TODO: pivot, plot, etc.
+    # TODO: statistically analyze the results (e.g. t-test, wilcoxon, etc.)
 
 
 setup_logger(__name__)

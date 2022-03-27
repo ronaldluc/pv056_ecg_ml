@@ -70,5 +70,5 @@ if __name__ == '__main__':
     data_folder = root_folder / 'data'
     download_files(urls, data_folder / 'downloaded')
     preprocess_datasets(data_folder / 'downloaded', data_folder / 'processed')
-    evaluate_datasets(data_folder / 'processed', root_folder / 'output' / 'results')
-    print_results(root_folder / 'output' / 'results', root_folder / 'output')
+    evaluate_datasets(data_folder / 'processed', root_folder / 'data' / 'intermediate_results')
+    print_results(root_folder / 'data' / 'intermediate_results', root_folder / 'output')
