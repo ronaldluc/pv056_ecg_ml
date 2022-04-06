@@ -10,6 +10,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 import ronald
 import sunil
 import adam
+import martin
 from utils import print_results, setup_logger, to_basics_dict, assign_dataset, download_files, preprocess_datasets
 
 
@@ -41,6 +42,10 @@ def evaluate_datasets(in_folder: Path, results_folder: Path):
             ronald.DLClassificator(),
             sunil.MLClassificator(),
             adam.MLClassificator(),
+            martin.MiniRocketClassificator(),
+            martin.InceptionTimeClassificator(),
+            martin.TSTClassificator(),
+            martin.XCMClassificator(),
         ]
 
         for model in models:
