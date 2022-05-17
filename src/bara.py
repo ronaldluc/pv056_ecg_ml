@@ -9,7 +9,7 @@ class MLClassificator(SVC):
     def transform(X):
         return X.reshape(X.shape[0], X.shape[1] * X.shape[2])
 
-    def fit(self, X, y):
+    def fit(self, X, y, **fit_params):
         X = self.transform(X)
         super().fit(X, y.argmax(axis=-1))
         return self
