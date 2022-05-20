@@ -11,6 +11,7 @@ import ronald
 import sunil
 import adam
 import martin
+import bara
 from utils import print_results, setup_logger, to_basics_dict, assign_dataset, download_files, preprocess_datasets
 
 
@@ -46,6 +47,7 @@ def evaluate_datasets(in_folder: Path, results_folder: Path):
             martin.InceptionTimeClassificator(),
             martin.TSTClassificator(),
             martin.XCMClassificator(),
+            bara.MLClassificator()
         ]
 
         for model in models:
