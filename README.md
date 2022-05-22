@@ -29,6 +29,8 @@ Each model was evaluated on 4 different publicly available datasets of reasonabl
 For the evaluation metrics, the accuracy and weighted average accuracy over all classes were used. 
 The overall best performance was achieved by the Random Forest classifier on denoised rhythm data (considering weighted average accuracy)
 achieving almost state-of-the-art results for the given task.
+
+
 Considering consistency over different datasets again Random Forest classifier seems to perform the best beating
 multiple more complex deep learning models.
 When it comes to the performance of the models across different datasets, we can see that models generally performed better on beat data compared to rhythm ones
