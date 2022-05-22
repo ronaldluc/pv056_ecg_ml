@@ -21,8 +21,6 @@ docker run -it --rm -v $PWD/src:/home/work/src -v $PWD/data:/home/work/data -v $
 
 ## Final results
 
-## Final results
-
 In our experiments, we have evaluated the performance of several classical machine learning models and also multiple
  state-of-the-art deep learning models for time series classification. 
 Each model was evaluated on 4 different publicly available datasets of reasonable size. 
@@ -86,7 +84,9 @@ For a detailed comparison check the table below where you can find exact evaluat
 |ECGData_Beat_LSTM                   |0.4               |0.0821848739495798|0.4095886775762937|
 |ECGDataDenoised_Rhythm_1D CNN       |0.2795698924731182|0.1377998345740281|0.3081725766429201|
 
+### Barplot
 
+![Barplot](barplot.png)
 
 ## Reproduce results
 
