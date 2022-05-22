@@ -72,7 +72,7 @@ def preprocess_datasets(in_folder: Path, out_folder: Path, cache=True):
         np.save(out_folder / dataset_name / 'y.npy', y)
 
     # TODO: Preprocess the other datasets
-    Y = pd.read_csv(Path + 'ptbxl_database.csv', index_col='ecg_id')
+    Y = pd.read_csv(Path + 'ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.1'+ 'ptbxl_database.csv', index_col='ecg_id')
     Y.scp_codes = Y.scp_codes.apply(lambda x: ast.literal_eval(x))
     sampling_rate = 100
     X = load_raw_data(Y, sampling_rate, Path)
