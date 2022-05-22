@@ -4,7 +4,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from typing import List, Iterable
-
+import wfdb
+import ast
 import numpy as np
 import pandas as pd
 import requests
@@ -32,18 +33,25 @@ def download_files(urls: List[str], path: Path):
     # TODO: Download other datasets
 
 
+def load_raw_data(df, sampling_rate, path: Path):
+    if sampling_rate == 100:
+        data = [wfdb.rdsamp(path+f) for f in df.filename_lr]
+    else:
+        data = [wfdb.rdsamp(path+f) for f in df.filename_hr]
+    data = np.array([signal for signal, meta in data])
+    return data
+
+
 def preprocess_datasets(in_folder: Path, out_folder: Path, cache=True):
     """
     Preprocess the datasets in the input folder and save them
     in the output folder as numpy arrays.
     """
     odf = pd.read_excel(in_folder / '15653771.zip')
-    # odf = pd.read_excel(in_folder / 'archive.zip')
     head = None
     ldf = odf.drop(index=1789)  # broken row
     ldf = ldf.iloc[:head]
     datasets = ['ECGData', 'ECGDataDenoised']
-    # datasets = ['mitbih_database']
 
     for dataset_name in datasets:
         logging.getLogger(__name__).info(f'Working on {dataset_name}')
@@ -64,7 +72,14 @@ def preprocess_datasets(in_folder: Path, out_folder: Path, cache=True):
         np.save(out_folder / dataset_name / 'y.npy', y)
 
     # TODO: Preprocess the other datasets
-       
+    Y = pd.read_csv(Path + 'ptbxl_database.csv', index_col='ecg_id')
+    Y.scp_codes = Y.scp_codes.apply(lambda x: ast.literal_eval(x))
+    sampling_rate = 100
+    X = load_raw_data(Y, sampling_rate, Path)
+    agg_df = pd.read_csv(Path + 'scp_statements.csv', index_col=0)
+    agg_df = agg_df[agg_df.diagnostic == 1]
+    Y['diagnostic_superclass'] = Y.scp_codes.apply('aggregate_diagnostic')
+
 
 def print_results(results_folder: Path, output_folder: Path):
     logging.getLogger(__name__).info('Results')

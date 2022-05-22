@@ -70,7 +70,7 @@ if __name__ == '__main__':
      'https://figshare.com/ndownloader/files/15651326',
      'https://figshare.com/ndownloader/files/15652862',
       'https://figshare.com/ndownloader/files/15653771',
-      #'https://www.kaggle.com/datasets/mondejar/mitbih-database/download'
+      'https://physionet.org/static/published-projects/ptb-xl/ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.1.zip'
       ]
 
     setup_logger(__name__)
