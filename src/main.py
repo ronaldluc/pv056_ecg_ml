@@ -17,10 +17,13 @@ from utils import print_results, setup_logger, to_basics_dict, assign_dataset, d
 
 def evaluate_datasets(in_folder: Path, results_folder: Path):
     results_folder.mkdir(exist_ok=True, parents=True)
+    head = 600
     for dataset in in_folder.glob('*'):
         logging.getLogger(__name__).info(f'Working on {dataset}')
-        y_df = pd.Series(np.load(dataset / 'y.npy', allow_pickle=True))
-        x = np.load(dataset / 'x.npy')
+        y_df = pd.Series(np.load(dataset / 'y.npy', allow_pickle=True))[:head]
+        x = np.load(dataset / 'x.npy')[:head]
+        print(f'x: {x.shape} y: {y_df.shape}')
+        print(f'{y_df.value_counts()}')
         df_split = y_df.groupby(y_df).apply(assign_dataset)
 
         ids = {type_: df_split[df_split.dataset == type_].index for type_ in ['train', 'dev', 'test']}
@@ -40,15 +43,17 @@ def evaluate_datasets(in_folder: Path, results_folder: Path):
 
         models = [
             ronald.MLClassificator(),
-            ronald.DLClassificator(),
             sunil.MLClassificator(),
             adam.MLClassificator(),
+            bara.MLClassificator(),
+            martin.MLClassificator(),
+            # DL CLF
+            ronald.DLClassificator(),
+            sunil.XCMClassificator(),
             adam.LSTMClassificator(),
+            bara.TSTClassificator(),
             martin.MiniRocketClassificator(),
             martin.InceptionTimeClassificator(),
-            martin.TSTClassificator(),
-            martin.XCMClassificator(),
-            bara.MLClassificator(),
         ]
 
         for model in models:

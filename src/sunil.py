@@ -1,4 +1,8 @@
 from sklearn.neighbors import KNeighborsClassifier
+from tsai.all import *
+import numpy as np
+
+from martin import TSAI
 
 
 class MLClassificator(KNeighborsClassifier):
@@ -20,3 +24,8 @@ class MLClassificator(KNeighborsClassifier):
     @property
     def name(self):
         return 'KNN'
+
+
+class XCMClassificator(TSAI):
+    def __init__(self):
+        super().__init__(XCM)

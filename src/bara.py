@@ -1,4 +1,7 @@
 from sklearn.svm import SVC
+from tsai.all import *
+
+from martin import TSAI
 
 
 class MLClassificator(SVC):
@@ -20,3 +23,8 @@ class MLClassificator(SVC):
     @property
     def name(self):
         return 'SVM'
+
+
+class TSTClassificator(TSAI):
+    def __init__(self):
+        super().__init__(TST)
