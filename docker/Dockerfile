@@ -1,5 +1,6 @@
-#FROM tensorflow/tensorflow:latest-gpu
-FROM tensorflow/tensorflow:latest
+#ARG FROM_IMAGE=tensorflow/tensorflow:latest-gpu
+ARG FROM_IMAGE=tensorflow/tensorflow:latest
+FROM $FROM_IMAGE
 
 RUN apt-get update \
     && apt-get install -y \
