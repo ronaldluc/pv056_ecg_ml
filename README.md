@@ -27,7 +27,7 @@ In our experiments, we have evaluated the performance of several classical machi
  state-of-the-art deep learning models for time series classification. 
 Each model was evaluated on 4 different publicly available datasets of reasonable size. 
 For the evaluation metrics, the accuracy and weighted average accuracy over all classes were used. 
-The overall best performance was achieved by the Random Forest classifier on denoised rhythm data 
+The overall best performance was achieved by the Random Forest classifier on denoised rhythm data (considering weighted average accuracy)
 achieving almost state-of-the-art results for the given task.
 Considering consistency over different datasets again Random Forest classifier seems to perform the best beating
 multiple more complex deep learning models.
