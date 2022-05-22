@@ -76,9 +76,9 @@ def preprocess_datasets(in_folder: Path, out_folder: Path, cache=True):
     Y.scp_codes = Y.scp_codes.apply(lambda x: ast.literal_eval(x))
     sampling_rate = 100
     X = load_raw_data(Y, sampling_rate, Path)
-    agg_df = pd.read_csv(Path + 'scp_statements.csv', index_col=0)
-    agg_df = agg_df[agg_df.diagnostic == 1]
     Y['diagnostic_superclass'] = Y.scp_codes.apply('aggregate_diagnostic')
+    np.save(out_folder / dataset_name / 'X.npy', X)
+    np.save(out_folder / dataset_name / 'Y.npy', Y)
 
 
 def print_results(results_folder: Path, output_folder: Path):
