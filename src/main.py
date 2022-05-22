@@ -15,9 +15,8 @@ import bara
 from utils import print_results, setup_logger, to_basics_dict, assign_dataset, download_files, preprocess_datasets
 
 
-def evaluate_datasets(in_folder: Path, results_folder: Path):
+def evaluate_datasets(in_folder: Path, results_folder: Path, head=None):
     results_folder.mkdir(exist_ok=True, parents=True)
-    head = 600
     for dataset in in_folder.glob('*'):
         logging.getLogger(__name__).info(f'Working on {dataset}')
         y_df = pd.Series(np.load(dataset / 'y.npy', allow_pickle=True))[:head]
@@ -85,5 +84,5 @@ if __name__ == '__main__':
     data_folder = root_folder / 'data'
     download_files(urls, data_folder / 'downloaded')
     preprocess_datasets(data_folder / 'downloaded', data_folder / 'processed')
-    evaluate_datasets(data_folder / 'processed', root_folder / 'data' / 'intermediate_results')
+    evaluate_datasets(data_folder / 'processed', root_folder / 'data' / 'intermediate_results', 4796)
     print_results(root_folder / 'data' / 'intermediate_results', root_folder / 'output')

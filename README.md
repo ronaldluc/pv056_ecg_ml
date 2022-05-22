@@ -43,4 +43,6 @@ git clone https://github.com/ronaldluc/pv056_ecg_ml.git
 cd pv056_ecg_ml
 docker build -t pv056_ecg_ml --build-arg FROM_IMAGE=tensorflow/tensorflow:latest-gpu docker
 docker run -it --rm -v $PWD/src:/home/work/src --gpus=all -v $PWD/output:/home/work/output pv056_ecg_ml python3 main.py  
+docker run -it --rm -v $PWD/src:/home/work/src --gpus=all  -v $PWD/data:/home/work/data -v $PWD/output:/home/work/output pv056_ecg_ml python3 main.py
+
 ```
