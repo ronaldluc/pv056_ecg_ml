@@ -67,10 +67,11 @@ def evaluate_datasets(in_folder: Path, results_folder: Path):
 
 if __name__ == '__main__':
     urls = [
-        'https://figshare.com/ndownloader/files/15651326',
-        'https://figshare.com/ndownloader/files/15652862',
-        'https://figshare.com/ndownloader/files/15653771',
-    ]
+     'https://figshare.com/ndownloader/files/15651326',
+     'https://figshare.com/ndownloader/files/15652862',
+      'https://figshare.com/ndownloader/files/15653771',
+      #'https://www.kaggle.com/datasets/mondejar/mitbih-database/download'
+      ]
 
     setup_logger(__name__)
     root_folder = Path('..')

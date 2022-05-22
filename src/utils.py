@@ -38,10 +38,12 @@ def preprocess_datasets(in_folder: Path, out_folder: Path, cache=True):
     in the output folder as numpy arrays.
     """
     odf = pd.read_excel(in_folder / '15653771.zip')
+    # odf = pd.read_excel(in_folder / 'archive.zip')
     head = None
     ldf = odf.drop(index=1789)  # broken row
     ldf = ldf.iloc[:head]
     datasets = ['ECGData', 'ECGDataDenoised']
+    # datasets = ['mitbih_database']
 
     for dataset_name in datasets:
         logging.getLogger(__name__).info(f'Working on {dataset_name}')
@@ -62,7 +64,7 @@ def preprocess_datasets(in_folder: Path, out_folder: Path, cache=True):
         np.save(out_folder / dataset_name / 'y.npy', y)
 
     # TODO: Preprocess the other datasets
-
+       
 
 def print_results(results_folder: Path, output_folder: Path):
     logging.getLogger(__name__).info('Results')
