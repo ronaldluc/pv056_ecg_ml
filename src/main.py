@@ -43,11 +43,12 @@ def evaluate_datasets(in_folder: Path, results_folder: Path):
             ronald.DLClassificator(),
             sunil.MLClassificator(),
             adam.MLClassificator(),
+            adam.LSTMClassificator(),
             martin.MiniRocketClassificator(),
             martin.InceptionTimeClassificator(),
             martin.TSTClassificator(),
             martin.XCMClassificator(),
-            bara.MLClassificator()
+            bara.MLClassificator(),
         ]
 
         for model in models:
