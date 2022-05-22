@@ -25,7 +25,7 @@ docker run -it --rm -v $PWD/src:/home/work/src -v $PWD/data:/home/work/data -v $
 
 In our experiments, we have evaluated the performance of several classical machine learning models and also multiple
  state-of-the-art deep learning models for time series classification. 
-Each model was evaluated on 3 different publicly available datasets of reasonable size. 
+Each model was evaluated on 4 different publicly available datasets of reasonable size. 
 For the evaluation metrics, the accuracy and weighted average accuracy over all classes were used. 
 The overall best performance was achieved by the Random Forest classifier on denoised rhythm data 
 achieving almost state-of-the-art results for the given task.
