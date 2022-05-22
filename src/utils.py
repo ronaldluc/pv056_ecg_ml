@@ -20,7 +20,7 @@ def setup_logger(name: str):
 
 
 def download_files(urls: List[str], path: Path):
-    logging.getLogger(name).info(f'Downloading {len(urls)} files')
+    logging.getLogger(__name__).info(f'Downloading {len(urls)} files')
     path.mkdir(exist_ok=True, parents=True)
     for url in urls:
         file_path = path / url.split('/')[-1]
