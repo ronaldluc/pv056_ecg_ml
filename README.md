@@ -18,3 +18,9 @@ To run with the precomputed information:
 ```bash
 docker run -it --rm -v $PWD/src:/home/work/src -v $PWD/data:/home/work/data -v $PWD/output:/home/work/output pv056_ecg_ml python3 main.py
 ```
+
+## Final results
+
+In our experiments, we have evaluated the performance of several classical machine learning models and also multiple state-of-the-art deep learning models for time series classification. Each model was evaluated on 3 different publicly available datasets of reasonable size. For the evaluation metrics, the f1 score and accuracy were used.
+The overall best performance was achieved by TODO achieving almost state-of-the-art results for the given task.
+For a detailed comparison check the table below where you can find exact evaluation results for all models.
