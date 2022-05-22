@@ -43,23 +43,31 @@ def preprocess_datasets(in_folder: Path, out_folder: Path, cache=True):
     ldf = ldf.iloc[:head]
     datasets = ['ECGData', 'ECGDataDenoised']
 
+    # noinspection PyInterpreter
     for dataset_name in datasets:
         logging.getLogger(__name__).info(f'Working on {dataset_name}')
-        if (out_folder / dataset_name / 'x.npy').exists() and cache:
+        if (out_folder / f'{dataset_name}_Rhythm' / 'x.npy').exists() and cache:
             logging.getLogger(__name__).info(f'\tAlready processed')
+            # x = np.load(out_folder / f'{dataset_name}_Rhythm' / 'x.npy')
             continue
-        cum = []
-        dataset_folder = in_folder / dataset_name
-        for file_name in tqdm(ldf['FileName']):  # overengineer to parallelism
-            cum.append(pd.read_csv(dataset_folder / f'{file_name}.csv').interpolate().values)
-        x = np.array(cum)
-        (out_folder / dataset_name).mkdir(exist_ok=True, parents=True)
+        else:
+            cum = []
+            dataset_folder = in_folder / dataset_name
+            for file_name in tqdm(ldf['FileName']):  # overengineer to parallelism
+                cum.append(pd.read_csv(dataset_folder / f'{file_name}.csv').interpolate().values)
+            x = np.array(cum)
 
-        y = ldf['Rhythm'].values
-        logging.getLogger(__name__).info(f'{x.dtype} {x.shape}')
-        logging.getLogger(__name__).info(f'{y.dtype} {y.shape}')
-        np.save(out_folder / dataset_name / 'x.npy', x)
-        np.save(out_folder / dataset_name / 'y.npy', y)
+        for pred_col in ['Rhythm', 'Beat']:
+            out_data_folder = (out_folder / f'{dataset_name}_{pred_col}')
+            out_data_folder.mkdir(exist_ok=True, parents=True)
+
+            v = ldf[pred_col].value_counts()
+            index = ldf[pred_col].isin(v.index[v.gt(100)])
+            y = ldf[pred_col].values
+            logging.getLogger(__name__).info(f'{x.dtype} {x.shape}')
+            logging.getLogger(__name__).info(f'{y.dtype} {y.shape}')
+            np.save(out_data_folder / 'x.npy', x[index])
+            np.save(out_data_folder / 'y.npy', y[index])
 
     # TODO: Preprocess the other datasets
 
